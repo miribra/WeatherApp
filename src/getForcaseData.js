@@ -26,16 +26,16 @@ const getFocastData = ()=> {
                     }
                     else
                     {
-                        for(j=0;j<5;j++)
+                       res.list.forEach((element) =>
                         {
-                            var date = new Date(res.list[j].dt * 1000)//.toDateString('dd-mm-yyyy')
+                            var date = new Date(element.dt * 1000)//.toDateString('dd-mm-yyyy')
                             var dateString = date.getFullYear() + '-' + date.getMonth() + '-' + date.getDate()
                             const f = data.find((obj) => (res.city.name == obj.city_name && dateString == obj.date))
                             if (!data.find((obj) => (res.city.name == obj.city_name && dateString == obj.date)))
                             {
-                                data.push({city_name:res.city.name,date:dateString,temp:res.list[j].main.temp,weather:res.list[j].weather[0].main})
+                                data.push({city_name:res.city.name,date:dateString,temp:element.main.temp,weather:element.weather[0].main})
                             }
-                        }
+                        })
                         numOfRes++;
                     
                         
